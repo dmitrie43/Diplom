@@ -6,26 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['authorBook', 'nameBook', 'publishBook', 'yearBook'];
+    protected $fillable = ['author', 'name', 'publish', 'year'];
 
     public function organization()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['authorBook', 'nameBook', 'publishBook', 'yearBook'];
+            $keys = ['author', 'name', 'publish', 'year'];
             for ($i = 0; $i < count($fields); $i += 4)
             {
                 $treeElem = array_slice($fields, $i, 4);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
 

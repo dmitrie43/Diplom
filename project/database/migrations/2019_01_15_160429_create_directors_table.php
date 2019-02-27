@@ -15,10 +15,10 @@ class CreateDirectorsTable extends Migration
     {
         Schema::create('directors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug');
-            $table->string('surnameDir');
-            $table->string('nameDir');
-            $table->string('patronymicDir');
+            $table->integer('organization_id')->nullable();
+            $table->string('surname');
+            $table->string('name');
+            $table->string('patronymic');
             $table->timestamps();
         });
     }

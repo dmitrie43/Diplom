@@ -15,8 +15,11 @@ class CreateSocietiesTable extends Migration
     {
         Schema::create('societies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nameSociety')->nullable();
-            $table->string('roomSociety')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('class')->nullable();
+            $table->string('head')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

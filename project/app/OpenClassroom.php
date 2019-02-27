@@ -6,26 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class OpenClassroom extends Model
 {
-    protected $fillable = ['nameOpenClassroom', 'roomOpenClassroom'];
+    protected $fillable = ['description', 'class', 'head'];
 
     public function organization()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['nameOpenClassroom', 'roomOpenClassroom'];
-            for ($i = 0; $i < count($fields); $i += 2)
+            $keys = ['description', 'class', 'head'];
+            for ($i = 0; $i < count($fields); $i += 3)
             {
-                $treeElem = array_slice($fields, $i, 2);
+                $treeElem = array_slice($fields, $i, 3);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
     public function edit($fields)

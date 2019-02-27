@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Others extends Model
 {
-    protected $fillable = ['others'];
+    protected $fillable = ['description'];
 
     public function organization()
     {
@@ -17,16 +17,14 @@ class Others extends Model
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['others'];
+            $keys = ['description'];
             for ($i = 0; $i < count($fields); $i ++)
             {
                 $treeElem = array_slice($fields, $i, 1);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
     public function edit($fields)

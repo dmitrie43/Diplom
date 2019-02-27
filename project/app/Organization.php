@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Director;
+use PhpParser\Node\Scalar\MagicConst\Dir;
 
 class Organization extends Model
 {
@@ -24,32 +26,72 @@ class Organization extends Model
 
     public function director()
     {
-        return $this->hasOne(Director::class, 'director_id');
+        return $this->hasOne(Director::class);
     }
 
     public function responsible()
     {
-        return $this->hasOne(Responsible::class, 'responsible_id');
+        return $this->hasOne(Responsible::class);
     }
 
     public function teachers()
     {
-        return $this->hasMany(Teachers::class, 'teachers_id');
+        return $this->hasMany(Teachers::class);
     }
 
     public function museums()
     {
-        return $this->hasMany(Museums::class, 'museums_id');
+        return $this->hasMany(Museums::class);
     }
 
     public function cabinets()
     {
-        return $this->hasMany(Cabinets::class, 'cabinets_id');
+        return $this->hasMany(Cabinets::class);
     }
 
     public function others()
     {
-        return $this->hasMany(Others::class, 'others_id');
+        return $this->hasMany(Others::class);
+    }
+
+    public function additionalInfo()
+    {
+        return $this->hasOne(AdditionalInfo::class);
+    }
+
+    public function book()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    public function collective()
+    {
+        return $this->hasMany(Collective::class);
+    }
+
+    public function event()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function methodolog()
+    {
+        return $this->hasMany(Methodolog::class);
+    }
+
+    public function openClassroom()
+    {
+        return $this->hasMany(OpenClassroom::class);
+    }
+
+    public function society()
+    {
+        return $this->hasMany(Society::class);
+    }
+
+    public function subjectStudy()
+    {
+        return $this->hasMany(SubjectStudy::class);
     }
 
     public static function add($fields)
@@ -71,6 +113,7 @@ class Organization extends Model
 
     public function edit($fields)
     {
+        $this->setUpdatedAt(date("Y-m-d H:i:s"));
         $this->fill($fields);
         $this->save();
     }

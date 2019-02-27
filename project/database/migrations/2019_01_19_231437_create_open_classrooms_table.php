@@ -15,8 +15,10 @@ class CreateOpenClassroomsTable extends Migration
     {
         Schema::create('open_classrooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nameOpenClassroom')->nullable();
-            $table->string('roomOpenClassroom')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('class')->nullable();
+            $table->string('head')->nullable();
             $table->timestamps();
         });
     }

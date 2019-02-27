@@ -15,9 +15,11 @@ class CreateCollectivesTable extends Migration
     {
         Schema::create('collectives', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('authorCollective')->nullable();
-            $table->string('nameCollective')->nullable();
-            $table->string('ageChildrenCollective')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->string('head')->nullable();
+            $table->string('name')->nullable();
+            $table->string('ageChildren')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

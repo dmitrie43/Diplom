@@ -6,26 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Society extends Model
 {
-    protected $fillable = ['nameSociety', 'roomSociety'];
+    protected $fillable = ['name', 'class', 'head', 'description'];
 
     public function organization()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['nameSociety', 'roomSociety'];
-            for ($i = 0; $i < count($fields); $i += 2)
+            $keys = ['name', 'class', 'head', 'description'];
+            for ($i = 0; $i < count($fields); $i += 4)
             {
-                $treeElem = array_slice($fields, $i, 2);
+                $treeElem = array_slice($fields, $i, 4);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
     public function edit($fields)

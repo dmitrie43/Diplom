@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Museums extends Model
 {
-    protected $fillable = ['museums'];
+    protected $fillable = ['description', 'exposition', 'head'];
 
     public function organization()
     {
@@ -17,16 +17,17 @@ class Museums extends Model
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['museums'];
-            for ($i = 0; $i < count($fields); $i ++)
+            $keys = ['description', 'exposition', 'head'];
+            for ($i = 0; $i < count($fields); $i += 3)
             {
-                $treeElem = array_slice($fields, $i, 1);
+                $treeElem = array_slice($fields, $i, 3);
+//                if ($treeElem[0] == null) {
+//                    continue;
+//                }
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
     public function edit($fields)

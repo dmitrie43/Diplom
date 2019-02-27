@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/api', 'Api@index')->name('api'); //Примеры json
+    Route::resource('api/organizations', 'Api\LocationController')->only(['index', 'show']);
 });
 
 Route::group(['prefix' => 'home', 'middleware' => 'admin'], function (){

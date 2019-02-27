@@ -18,6 +18,7 @@ use App\Society;
 use App\SubjectStudy;
 use App\Teachers;
 use Illuminate\Http\Request;
+use PhpParser\Node\Scalar\MagicConst\Dir;
 
 class ListController extends Controller
 {
@@ -30,22 +31,22 @@ class ListController extends Controller
     public function fullData($id)
     {
         $org = Organization::where('id', $id)->get();
-//        $resp = Responsible::where('id', $id)->get();
-//        $dir = Director::where('id', $id)->get();
-//        $teach = Teachers::where('id', $id)->get();
-//        $cab = Cabinets::where('id', $id)->get();
-//        $mus = Museums::where('id', $id)->get();
-//        $other = Others::where('id', $id)->get();
-//        $sub = SubjectStudy::where('id', $id)->get();
-//        $book = Book::where('id', $id)->get();
-//        $meth = Methodolog::where('id', $id)->get();
-//        $open = OpenClassroom::where('id', $id)->get();
-//        $soc = Society::where('id', $id)->get();
-//        $col = Collective::where('id', $id)->get();
-//        $event = Event::where('id', $id)->get();
-//        $add = AdditionalInfo::where('id', $id)->get();
+        $resp = Organization::find($id)->responsible()->get();
+        $dir = Organization::find($id)->director()->get();
+        $teach = Organization::find($id)->teachers()->get();
+        $museum = Organization::find($id)->museums()->get();
+        $cab = Organization::find($id)->cabinets()->get();
+        $other = Organization::find($id)->others()->get();
+        $sub = Organization::find($id)->subjectStudy()->get();
+        $book = Organization::find($id)->book()->get();
+        $meth = Organization::find($id)->methodolog()->get();
+        $open = Organization::find($id)->openClassroom()->get();
+        $soc = Organization::find($id)->society()->get();
+        $col = Organization::find($id)->collective()->get();
+        $event = Organization::find($id)->event()->get();
+        $add = Organization::find($id)->additionalInfo()->get();
         return view('fulldata', compact('org', 'resp', 'dir', 'teach',
-            'cab', 'mus', 'other', 'sub', 'book', 'meth', 'open', 'soc',
+            'cab', 'museum', 'other', 'sub', 'book', 'meth', 'open', 'soc',
             'col', 'event', 'add'));
     }
 
@@ -58,58 +59,98 @@ class ListController extends Controller
     {
         $this->validate($request, [
             'nameOrganization' => 'required',
-            'surnameDir' => 'required',
-            'nameDir' => 'required',
-            'patronymicDir' => 'required',
+//            'surnameDir' => 'required',
+//            'nameDir' => 'required',
+//            'patronymicDir' => 'required',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
-            'telephoneResp' => 'numeric',
-            'surnameResp' => 'required',
-            'nameResp' => 'required',
-            'patronymicResp' => 'required'
         ]);
-
-        Organization::add($request->all());
-        Responsible::add($request->all());
-        Director::add($request->all());
-        Teachers::add($request->Teacher);
-        Cabinets::add($request->Cabinets);
-        Museums::add($request->Museums);
-        Others::add($request->Others);
-        SubjectStudy::add($request->Subject);
-        Book::add($request->Book);
-        Methodolog::add($request->Methodolog);
-        OpenClassroom::add($request->openClassroom);
-        Society::add($request->Society);
-        Collective::add($request->Collective);
-        Event::add($request->Event);
-        AdditionalInfo::add($request->all());
-        return redirect()->route('list');
-    }
-
-    public function destroy($id)
-    {
-        Organization::find($id)->remove();
-        return redirect()->route('list');
+        $organiz = Organization::add($request->all());
+        $organiz->director()->createMany(Director::add($request->Director));
+        $organiz->responsible()->createMany(Responsible::add($request->Responsible));
+        $organiz->teachers()->createMany(Teachers::add($request->Teacher));
+        $organiz->museums()->createMany(Museums::add($request->Museum));
+        $organiz->cabinets()->createMany(Cabinets::add($request->Cabinets));
+        $organiz->others()->createMany(Others::add($request->Others));
+        $organiz->subjectStudy()->createMany(SubjectStudy::add($request->Subject));
+        $organiz->book()->createMany(Book::add($request->Book));
+        $organiz->methodolog()->createMany(Methodolog::add($request->Methodolog));
+        $organiz->openClassroom()->createMany(OpenClassroom::add($request->openClassroom));
+        $organiz->society()->createMany(Society::add($request->Society));
+        $organiz->collective()->createMany(Collective::add($request->Collective));
+        $organiz->event()->createMany(Event::add($request->Event));
+        $organiz->additionalInfo()->createMany(AdditionalInfo::add($request->additionalInfo));
+        return redirect()->route('list', $organiz);
     }
 
     public function edit($id)
     {
-        $list = Organization::find($id);
-        return view('edit', compact('list'));
+        $org = Organization::find($id);
+        return view('edit', compact('org'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'nameOrganization' => 'required',
-            'fullNameDirector' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required'
+//            'surnameDir' => 'required',
+//            'nameDir' => 'required',
+//            'patronymicDir' => 'required',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
         ]);
 
-        $list = Organization::find($id);
-        $list->edit($request->all());
+        $organiz = Organization::find($id);
+        $organiz->edit($request->all());
+        $organiz->director()->delete();
+        $organiz->director()->createMany(Director::add($request->Director));
+        $organiz->responsible()->delete();
+        $organiz->responsible()->createMany(Responsible::add($request->Responsible));
+        $organiz->teachers()->delete();
+        $organiz->teachers()->createMany(Teachers::add($request->Teacher));
+        $organiz->museums()->delete();
+        $organiz->museums()->createMany(Museums::add($request->Museum));
+        $organiz->cabinets()->delete();
+        $organiz->cabinets()->createMany(Cabinets::add($request->Cabinets));
+        $organiz->others()->delete();
+        $organiz->others()->createMany(Others::add($request->Others));
+        $organiz->subjectStudy()->delete();
+        $organiz->subjectStudy()->createMany(SubjectStudy::add($request->Subject));
+        $organiz->book()->delete();
+        $organiz->book()->createMany(Book::add($request->Book));
+        $organiz->methodolog()->delete();
+        $organiz->methodolog()->createMany(Methodolog::add($request->Methodolog));
+        $organiz->openClassroom()->delete();
+        $organiz->openClassroom()->createMany(OpenClassroom::add($request->openClassroom));
+        $organiz->society()->delete();
+        $organiz->society()->createMany(Society::add($request->Society));
+        $organiz->collective()->delete();
+        $organiz->collective()->createMany(Collective::add($request->Collective));
+        $organiz->event()->delete();
+        $organiz->event()->createMany(Event::add($request->Event));
+        $organiz->additionalInfo()->delete();
+        $organiz->additionalInfo()->createMany(AdditionalInfo::add($request->additionalInfo));
+        return redirect()->route('list', $organiz);
+    }
+
+    public function destroy($id)
+    {
+        $organiz = Organization::find($id);
+        $organiz->director()->delete();
+        $organiz->responsible()->delete();
+        $organiz->teachers()->delete();
+        $organiz->museums()->delete();
+        $organiz->cabinets()->delete();
+        $organiz->others()->delete();
+        $organiz->subjectStudy()->delete();
+        $organiz->book()->delete();
+        $organiz->methodolog()->delete();
+        $organiz->openClassroom()->delete();
+        $organiz->society()->delete();
+        $organiz->collective()->delete();
+        $organiz->event()->delete();
+        $organiz->additionalInfo()->delete();
+        $organiz->remove();
         return redirect()->route('list');
     }
 }

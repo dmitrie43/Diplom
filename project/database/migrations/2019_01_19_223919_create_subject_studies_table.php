@@ -15,8 +15,9 @@ class CreateSubjectStudiesTable extends Migration
     {
         Schema::create('subject_studies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nameSubject')->nullable();
-            $table->string('levelSubject')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('level')->nullable();
             $table->timestamps();
         });
     }

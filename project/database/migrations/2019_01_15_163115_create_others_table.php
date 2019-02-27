@@ -15,7 +15,8 @@ class CreateOthersTable extends Migration
     {
         Schema::create('others', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('others')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

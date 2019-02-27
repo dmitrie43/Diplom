@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Наименование образовательной организации(обязательно)</label>
-                        <input name="nameOrganization"2 value="{{old('nameOrganization')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input name="nameOrganization" value="{{old('nameOrganization')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Введите координаты организации (долгота)</label>
@@ -29,32 +29,32 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Фамилия директора образовательной организации</label>
-                        <input name="surnameDir" value="{{old('surnameDir')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Director[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Имя директора</label>
-                        <input name="nameDir" value="{{old('fullNameDirector')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Director[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Отчество директора</label>
-                        <input name="patronymicDir" value="{{old('patronymicDir')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Director[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Фамилия лица, ответственного в образовательной организации за этнокультурную
                         составляющую образовательного процесса</label>
-                        <input name="surnameResp" value="{{old('surnameResp')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Responsible[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Имя ответственного</label>
-                        <input name="nameResp" value="{{old('nameResp')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Responsible[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Отчество ответственного</label>
-                        <input name="patronymicResp" value="{{old('patronymicResp')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Responsible[]" value="" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Номер телефона ответственного</label>
-                        <input name="telephoneResp" value="{{old('telephoneResp')}}" type="number" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input required name="Responsible[]" value="{{old('telephone')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Статус образовательной организации</label>
@@ -110,13 +110,21 @@
                         <table class="table-check tc tc2">
                             <thead>
                             <th>№</th>
-                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Экспозиции</th>
+                            <th>Руководитель</th>
                             </thead>
                             <tbody>
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Museums[]" size="20">
+                                    <input type="text" placeholder="" name="Museum[]" size="40">
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="" name="Museum[]" size="20">
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="" name="Museum[]" size="20">
                                 </td>
                             </tr>
                             </tbody>
@@ -129,10 +137,14 @@
                             <thead>
                             <th>№</th>
                             <th>Информация о кабинете</th>
+                            <th>Руководитель</th>
                             </thead>
                             <tbody>
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
+                                <td>
+                                    <input type="text" placeholder="" name="Cabinets[]" size="20">
+                                </td>
                                 <td>
                                     <input type="text" placeholder="" name="Cabinets[]" size="20">
                                 </td>
@@ -152,7 +164,7 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Others[]" style="width: 400px; height: 30px">
+                                    <textarea type="text" placeholder="" name="Others[]" style="width: 400px; height: 30px"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -248,12 +260,16 @@
                         <table class="table-check tc tc2">
                             <thead>
                             <th>№</th>
-                            <th>Название</th>
+                            <th>Описание</th>
                             <th>Класс</th>
+                            <th>Руководитель</th>
                             </thead>
                             <tbody>
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
+                                <td>
+                                    <input type="text" placeholder="" name="openClassroom[]"  size="20">
+                                </td>
                                 <td>
                                     <input type="text" placeholder="" name="openClassroom[]"  size="20">
                                 </td>
@@ -272,10 +288,18 @@
                             <th>№</th>
                             <th>Название</th>
                             <th>Класс</th>
+                            <th>Руководитель</th>
+                            <th>Описание</th>
                             </thead>
                             <tbody>
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
+                                <td>
+                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                </td>
                                 <td>
                                     <input type="text" placeholder="" name="Society[]"  size="20">
                                 </td>
@@ -293,13 +317,17 @@
                         <table class="table-check tc tc2">
                             <thead>
                             <th>№</th>
-                            <th>Автор</th>
+                            <th>Руководитель</th>
                             <th>Название</th>
-                            <th>Возраст</th>
+                            <th>Возраст детей</th>
+                            <th>Описание</th>
                             </thead>
                             <tbody>
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
+                                <td>
+                                    <input type="text" placeholder="" name="Collective[]"  size="20">
+                                </td>
                                 <td>
                                     <input type="text" placeholder="" name="Collective[]"  size="20">
                                 </td>
@@ -362,7 +390,6 @@
             </div>
             <!-- /.box-footer-->
         </div>
-
         {{ Form::close() }}
     </section>
     <script src="{{ asset('js/zzz.js') }}"></script>

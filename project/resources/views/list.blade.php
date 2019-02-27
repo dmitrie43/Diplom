@@ -6,9 +6,10 @@
     <div class="form-group">
         <a href="{{ route('create') }}" class="btn btn-success">Добавить</a>
     </div>
-    <table id="example1" class="table table-bordered table-striped">
+    <table id="example1" class="table table-bordered table-striped" style="width: 1000px;">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Наименование организации</th>
             <th>Дата создания</th>
             <th>Дата изменения</th>
@@ -18,19 +19,23 @@
         </thead>
         <tbody>
         @foreach($lists as $list)
-            <tr>
-                <td><a href="{{route('fullData', $list->id)}}">{{ $list->nameOrganization }}</a></td>
-                <td>{{ $list->created_at }}</td>
-                <td>{{ $list->updated_at }}</td>
-                <td style="text-align: center"><a href="{{ route('edit', $list->id) }}" class="fa fa-pencil"></a></td>
-                <td style="text-align: center">{{Form::open(['route' => ['destroy', $list->id], 'method' => 'delete'])}}
-                    {{--<form action="{{route('posts.destroy', [$post->id])}}" method="post">--}}
-                    <button onclick="return confirm('Удаление необратимо, вы уверены?')" type="submit" class="delete">
-                        <a class="fa fa-remove"></a>
-                    </button>
-                    {{--</form>--}}
-                    {{Form::close()}}</td>
-            </tr>
+                <tr>
+                    <td>{{ $list->id }}</td>
+                    <td width="300px;"><a href="{{route('fullData', $list->id)}}">{{ $list->nameOrganization }}</a></td>
+                    <td>{{ $list->created_at }}</td>
+                    <td>{{ $list->updated_at }}</td>
+                    <td style="text-align: center">
+                        <a onclick="return confirm('Вам придется переписывать все заново, вы уверены?')" href="{{ route('edit', $list) }}" class="fa fa-pencil"></a>
+                    </td>
+                    <td style="text-align: center">{{Form::open(['route' => ['destroy', $list], 'method' => 'delete'])}}
+                        {{--<form action="{{route('posts.destroy', [$post->id])}}" method="post">--}}
+                        <button onclick="return confirm('Удаление необратимо, вы уверены?')" type="submit" class="delete">
+                            <a class="fa fa-remove"></a>
+                        </button>
+                        {{--</form>--}}
+                        {{Form::close()}}
+                    </td>
+                </tr>
         @endforeach
         </tbody>
     </table>

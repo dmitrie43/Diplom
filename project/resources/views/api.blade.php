@@ -9,4 +9,5 @@
         <h1>Нужная инфа</h1>
             {{ $orgs->nameOrganization }}<br>
     @endforeach
+        <h1></h1>
 @stop

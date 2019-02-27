@@ -15,11 +15,11 @@ class CreateResponsiblesTable extends Migration
     {
         Schema::create('responsibles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug')->nullable();
-            $table->string('surnameResp')->nullable();
-            $table->string('nameResp')->nullable();
-            $table->string('patronymicResp')->nullable();
-            $table->integer('telephoneResp')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->string('surname')->nullable();
+            $table->string('name')->nullable();
+            $table->string('patronymic')->nullable();
+            $table->string('telephone')->nullable();
             $table->timestamps();
         });
     }

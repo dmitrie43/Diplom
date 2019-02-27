@@ -15,10 +15,11 @@ class CreateMethodologsTable extends Migration
     {
         Schema::create('methodologs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('authorMethodolog')->nullable();
-            $table->string('nameMethodolog')->nullable();
-            $table->string('publishMethodolog')->nullable();
-            $table->string('yearMethodolog')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->string('author')->nullable();
+            $table->string('name')->nullable();
+            $table->string('publish')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

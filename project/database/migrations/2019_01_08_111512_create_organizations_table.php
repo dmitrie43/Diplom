@@ -19,10 +19,8 @@ class CreateOrganizationsTable extends Migration
             $table->float('latitude')->default(0);
             $table->string('slug');
             $table->string('nameOrganization');
-            //$table->string('fullNameDirector');
-            //$table->string('fullNameResponsible')->nullable();
-            $table->string('statusOrganization')->nullable();
-            $table->string('numberDocumentation')->nullable();
+            $table->text('statusOrganization')->nullable();
+            $table->text('numberDocumentation')->nullable();
             //$table->text('fullNameTeachers')->nullable();
             //$table->text('museums')->nullable();
             //$table->text('cabinets')->nullable();
@@ -40,13 +38,12 @@ class CreateOrganizationsTable extends Migration
             //$table->text('additionalInfo')->nullable();
             //$table->integer('culture_id')->nullable();
             //$table->integer('event_id')->nullable();
-            $table->integer('director_id')->unsigned()->nullable();
-            $table->foreign('director_id')->references('id')->on('directors');
-            $table->integer('responsible_id')->nullable();
-            $table->integer('teachers_id')->nullable();
-            $table->integer('museums_id')->nullable();
-            $table->integer('cabinets_id')->nullable();
-            $table->integer('others_id')->nullable();
+//            $table->integer('director_id')->nullable();
+//            $table->integer('responsible_id')->nullable();
+//            $table->integer('teachers_id')->nullable();
+//            $table->integer('museums_id')->nullable();
+//            $table->integer('cabinets_id')->nullable();
+//            $table->integer('others_id')->nullable();
             $table->timestamps();
         });
     }

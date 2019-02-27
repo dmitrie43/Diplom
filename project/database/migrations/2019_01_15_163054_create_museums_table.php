@@ -15,7 +15,10 @@ class CreateMuseumsTable extends Migration
     {
         Schema::create('museums', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('museums')->nullable();
+            $table->integer('organization_id')->nullable();
+            $table->text('description')->nullable();
+            $table->text('exposition')->nullable();
+            $table->string('head')->nullable();
             $table->timestamps();
         });
     }

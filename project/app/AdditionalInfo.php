@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdditionalInfo extends Model
 {
-    protected $fillable = ['additionalInfo'];
+    protected $fillable = ['description'];
 
     public function organization()
     {
@@ -15,12 +15,15 @@ class AdditionalInfo extends Model
 
     public static function add($fields)
     {
-        if (!empty($fields['additionalInfo'])) {
-            $data = new static;
-            $data->fill($fields);
-            $data->save();
-            return $data;
-        }
+        if (!empty($fields)) {
+            $result[] = $fields;
+            $keys = ['description'];
+            for ($i = 0; $i < count($result); $i++)
+            {
+                $res[] = array_combine($keys, $result);
+            }
+            return $res;
+        } else return array();
     }
 
     public function edit($fields)

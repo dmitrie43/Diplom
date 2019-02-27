@@ -8,33 +8,44 @@ use Illuminate\Support\Facades\DB;
 class Teachers extends Model
 {
 
-    protected $fillable = ['surnameTeach', 'nameTeach', 'patronymicTeach'];
+    protected $fillable = ['surname', 'name', 'patronymic'];
 
     public function organization()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['surnameTeach', 'nameTeach', 'patronymicTeach'];
+            $keys = ['surname', 'name', 'patronymic'];
             for ($i = 0; $i < count($fields); $i += 3)
             {
                 $treeElem = array_slice($fields, $i, 3);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
 
-    public function edit($fields)
+    public static function edit($fields)
     {
-        $this->fill($fields);
-        $this->save();
+        if ($fields[0] != null) {
+            $keys = ['surname', 'name', 'patronymic'];
+            for ($i = 0; $i < count($fields); $i += 3)
+            {
+                $treeElem = array_slice($fields, $i, 3);
+                $res[] = array_combine($keys, $treeElem);
+            }
+            $arres = [];
+            foreach ($res as $subres) {
+                foreach ($subres as $key => $val) {
+                    $arres[$key] = $val;
+                }
+            }
+            return $arres;
+        } else return array();
     }
 
     public function remove()

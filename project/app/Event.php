@@ -6,26 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['levelEvent', 'formEvent', 'nameEvent', 'dateEvent'];
+    protected $fillable = ['level', 'form', 'name', 'date'];
 
     public function organization()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public static function add($fields)
     {
         if ($fields[0] != null) {
-            $data = new static;
-            $keys = ['levelEvent', 'formEvent', 'nameEvent', 'dateEvent'];
+            $keys = ['level', 'form', 'name', 'date'];
             for ($i = 0; $i < count($fields); $i += 4)
             {
                 $treeElem = array_slice($fields, $i, 4);
                 $res[] = array_combine($keys, $treeElem);
             }
-            $data->insert($res);
-            return $data;
-        }
+            return $res;
+        } else return array();
     }
 
 

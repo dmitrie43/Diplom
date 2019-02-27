@@ -4,75 +4,256 @@
 
 @section('content')
     <style>
-        .table_blur {
-            background: #f5ffff;
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
             border-collapse: collapse;
-            text-align: left;
+            text-align: center;
         }
-        .table_blur th {
-            border-top: 1px solid #777777;
-            border-bottom: 1px solid #777777;
-            box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
-            background: linear-gradient(#9595b6, #5a567f);
+        th, td:first-child {
+            background: #AFCDE7;
             color: white;
-            padding: 10px 15px;
-            position: relative;
+            padding: 10px 20px;
         }
-        .table_blur th:after {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 25%;
-            height: 25%;
-            width: 100%;
-            background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255,.08));
+        th, td {
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: white;
         }
-        .table_blur tr:nth-child(odd) {
-            background: #ebf3f9;
+        td {
+            background: #D8E6F3;
         }
-        .table_blur th:first-child {
-            border-left: 1px solid #777777;
-            border-bottom:  1px solid #777777;
-            box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
-        }
-        .table_blur th:last-child {
-            border-right: 1px solid #777777;
-            border-bottom:  1px solid #777777;
-            box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
-        }
-        .table_blur td {
-            border: 1px solid #e3eef7;
-            padding: 10px 15px;
-            position: relative;
-            transition: all 0.5s ease;
+        th:first-child, td:first-child {
+            text-align: left;
         }
     </style>
     <section class="content">
         <table id="example1" class="table_blur">
+            <th colspan="6"></th>
             @foreach($org as $elem)
                 <tr>
                     <th>Наименование организации</th>
                     <td>{{ $elem->nameOrganization }}</td>
+                    <th colspan="4"></th>
                 </tr>
                 <tr>
-                    <th>Координаты (Д, Ш)</th>
+                    <th>Координаты: Долгота</th>
                     <td>{{ $elem->longitude }}</td>
+                    <th colspan="4"></th>
+                </tr>
+                <tr>
+                    <th>Координаты: Широта</th>
                     <td>{{ $elem->latitude }}</td>
+                    <th colspan="4"></th>
                 </tr>
                 <tr>
                     <th>Статус организации</th>
                     <td>{{ $elem->statusOrganization }}</td>
+                    <th colspan="4"></th>
                 </tr>
                 <tr>
                     <th>Номер документа</th>
                     <td>{{ $elem->numberDocumentation }}</td>
-                </tr>
-                <tr>
-                    <th>Номер документа</th>
-                    <td>{{ $elem->numberDocumentation }}</td>
+                    <th colspan="4"></th>
                 </tr>
             @endforeach
+            @foreach($dir as $elem)
+                <tr>
+                    <th>ФИО Директора</th>
+                    <td>{{ $elem->surname }} {{ $elem->name }} {{ $elem->patronymic }}</td>
+                    <th colspan="4"></th>
+                </tr>
+            @endforeach
+            @foreach($resp as $elem)
+                <tr>
+                    <th>ФИО Ответственного и его номер</th>
+                    <td>{{ $elem->surname }} {{ $elem->name }} {{ $elem->patronymic }}</td>
+                    <td>{{ $elem->telephone }}</td>
+                    <th colspan="3"></th>
+                </tr>
+            @endforeach
+                <tr>
+                    <th>Учителя</th>
+                    <th>ФИО</th>
+                    <th colspan="4"></th>
+                    @foreach($teach as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->surname }} {{ $elem->name }} {{ $elem->patronymic }}</td>
+                            <th colspan="4"></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Музеи:</th>
+                    <th>Описание</th>
+                    <th>Экспозиции</th>
+                    <th>Руководитель</th>
+                    <th colspan="2"></th>
+                    @foreach($museum as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->description }}</td>
+                            <td>{{ $elem->exposition }}</td>
+                            <td>{{ $elem->head }}</td>
+                            <th colspan="4"></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Кабинеты:</th>
+                    <th>Описание</th>
+                    <th>Руководитель</th>
+                    <th colspan="3"></th>
+                    @foreach($cab as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->description }}</td>
+                            <td>{{ $elem->head }}</td>
+                            <th colspan="3"></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <th>Иное:</th>
+                <th>Наименование</th>
+                <th colspan="4"></th>
+                @foreach($other as $elem)
+                    <tr>
+                        <td>№{{ $loop->iteration }}</td>
+                        <td>{{ $elem->description }}</td>
+                        <th colspan="4"></th>
+                    </tr>
+                @endforeach
+                <tr>
+                    <th>Предметы:</th>
+                    <th>Название</th>
+                    <th>Уровень образования</th>
+                    <th colspan="3"></th>
+                    @foreach($sub as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->title }}</td>
+                            <td>{{ $elem->level }}</td>
+                            <th colspan="3"></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Учебники:</th>
+                    <th>Автор</th>
+                    <th>Название</th>
+                    <th>Издательство</th>
+                    <th>Год выпуска</th>
+                    <th></th>
+                    @foreach($book as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->author }}</td>
+                            <td>{{ $elem->name }}</td>
+                            <td>{{ $elem->publish }}</td>
+                            <td>{{ $elem->year }}</td>
+                            <th></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Методическое обеспечение:</th>
+                    <th>Автор</th>
+                    <th>Название</th>
+                    <th>Издательство</th>
+                    <th>Год выпуска</th>
+                    <th></th>
+                    @foreach($meth as $elem)
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->author }}</td>
+                            <td>{{ $elem->name }}</td>
+                            <td>{{ $elem->publish }}</td>
+                            <td>{{ $elem->year }}</td>
+                            <th></th>
+                        </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Факультативы:</th>
+                    <th>Описание</th>
+                    <th>Класс</th>
+                    <th>Руководитель</th>
+                    <th colspan="2"></th>
+                    @foreach($open as $elem)
+                    <tr>
+                        <tr>
+                            <td>№{{ $loop->iteration }}</td>
+                            <td>{{ $elem->description	}}</td>
+                            <td>{{ $elem->class }}</td>
+                            <td>{{ $elem->head }}</td>
+                            <th colspan="3"></th>
+                        </tr>
+                    </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Кружки:</th>
+                    <th>Название</th>
+                    <th>Класс</th>
+                    <th>Руководитель</th>
+                    <th>Описание</th>
+                    <th colspan="1"></th>
+                    @foreach($soc as $elem)
+                    <tr>
+                        <td>№{{ $loop->iteration }}</td>
+                        <td>{{ $elem->name }}</td>
+                        <td>{{ $elem->class }}</td>
+                        <td>{{ $elem->head }}</td>
+                        <td>{{ $elem->description }}</td>
+                        <th colspan="1"></th>
+                    </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Коллективы:</th>
+                    <th>Руководитель</th>
+                    <th>Название</th>
+                    <th>Участники</th>
+                    <th>Описание</th>
+                    <th colspan="1"></th>
+                    @foreach($col as $elem)
+                    <tr>
+                        <td>№{{ $loop->iteration }}</td>
+                        <td>{{ $elem->head }}</td>
+                        <td>{{ $elem->name }}</td>
+                        <td>{{ $elem->ageChildren }}</td>
+                        <td>{{ $elem->description }}</td>
+                        <th colspan="1"></th>
+                    </tr>
+                    @endforeach
+                </tr>
+                <tr>
+                    <th>Мероприятия:</th>
+                    <th>Уровень</th>
+                    <th>Форма</th>
+                    <th>Название</th>
+                    <th>Дата проведения</th>
+                    <th></th>
+                    @foreach($event as $elem)
+                    <tr>
+                        <td>№{{ $loop->iteration }}</td>
+                        <td>{{ $elem->level }}</td>
+                        <td>{{ $elem->form }}</td>
+                        <td>{{ $elem->name }}</td>
+                        <td>{{ $elem->date }}</td>
+                        <th></th>
+                    </tr>
+                    @endforeach
+                </tr>
+                @foreach($add as $elem)
+                <tr>
+                <th>Дополнительная информация:</th>
+                    <td colspan="4">{{ $elem->description }}</td>
+                    <th></th>
+                </tr>
+                @endforeach
+            <th colspan="6"></th>
         </table>
     </section>
 @stop

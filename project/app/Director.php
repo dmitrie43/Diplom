@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Director extends Model
 {
-    use Sluggable;
-
-    protected $fillable = ['surnameDir', 'nameDir', 'patronymicDir'];
+    protected $fillable = ['surname', 'name', 'patronymic'];
 
     public function organization()
     {
@@ -18,25 +16,30 @@ class Director extends Model
 
     public static function add($fields)
     {
-        $data = new static;
-        $data->fill($fields);
-        $data->save();
-        return $data;
+        $keys = ['surname', 'name', 'patronymic'];
+        for ($i = 0; $i < count($fields); $i += 3)
+        {
+            $treeElem = array_slice($fields, $i, 3);
+            $res[] = array_combine($keys, $treeElem);
+        }
+        return $res;
     }
 
-    public function sluggable()
+    public static function edit($fields)
     {
-        return [
-            'slug' => [
-                'source' => 'surnameDir'
-            ]
-        ];
-    }
-
-    public function edit($fields)
-    {
-        $this->fill($fields);
-        $this->save();
+        $keys = ['surname', 'name', 'patronymic'];
+        for ($i = 0; $i < count($fields); $i += 3)
+        {
+            $treeElem = array_slice($fields, $i, 3);
+            $res[] = array_combine($keys, $treeElem);
+        }
+        $arres = [];
+        foreach ($res as $subres) {
+            foreach ($subres as $key => $val) {
+                $arres[$key] = $val;
+            }
+        }
+        return $arres;
     }
 
     public function remove()
