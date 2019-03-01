@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::get('/api', 'Api@index')->name('api'); //Примеры json
+Route::group(['middleware' => 'cors'], function () {
+//    Route::get('/api', 'Api@index')->name('api'); //Примеры json
     Route::resource('api/organizations', 'Api\LocationController')->only(['index', 'show']);
 });
 
