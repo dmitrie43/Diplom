@@ -46,22 +46,39 @@ class LocationController extends Controller
         $resp2 = $arr[1];
         $dir2 = $arr[2];
 
+//        $res = [
+//            'organization' => $org2,
+//            'responsible' => $resp2,
+//            'director' => $dir2,
+//            'teachers' => $teach,
+//            'museums' => $museum,
+//            'cabinets' => $cab,
+//            'others' => $other,
+//            'subjects' => $sub,
+//            'books' => $book,
+//            'methodologs' => $meth,
+//            'openClassrooms' => $open,
+//            'societies' => $soc,
+//            'collectives' => $col,
+//            'events' => $event,
+//            'additionalInfo' => $add
+//        ];
         $res = [
-            'organization' => $org2,
-            'responsible' => $resp2,
-            'director' => $dir2,
-            'teachers' => $teach,
-            'museums' => $museum,
-            'cabinets' => $cab,
-            'others' => $other,
-            'subjects' => $sub,
-            'books' => $book,
-            'methodologs' => $meth,
-            'openClassrooms' => $open,
-            'societies' => $soc,
-            'collectives' => $col,
-            'events' => $event,
-            'additionalInfo' => $add
+            'организация' => $org2,
+            'ответственный' => $resp2,
+            'директор' => $dir2,
+            'учителя' => $teach,
+            'музеи' => $museum,
+            'кабинеты' => $cab,
+            'прочее' => $other,
+            'предметы' => $sub,
+            'книги' => $book,
+            'методички' => $meth,
+            'факультативы' => $open,
+            'кружки' => $soc,
+            'коллективы' => $col,
+            'мероприятия' => $event,
+            'дополнительная информация' => $add
         ];
 
         return json_encode($res, JSON_UNESCAPED_UNICODE);
