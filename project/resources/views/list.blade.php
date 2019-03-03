@@ -25,7 +25,7 @@
                     <td>{{ $list->created_at }}</td>
                     <td>{{ $list->updated_at }}</td>
                     <td style="text-align: center">
-                        <a onclick="return confirm('Вам придется переписывать все заново, вы уверены?')" href="{{ route('edit', $list) }}" class="fa fa-pencil"></a>
+                        <a href="{{ route('edit', $list) }}" class="fa fa-pencil"></a>
                     </td>
                     <td style="text-align: center">{{Form::open(['route' => ['destroy', $list], 'method' => 'delete'])}}
                         {{--<form action="{{route('posts.destroy', [$post->id])}}" method="post">--}}

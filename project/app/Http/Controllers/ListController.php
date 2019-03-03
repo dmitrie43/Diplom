@@ -85,8 +85,27 @@ class ListController extends Controller
 
     public function edit($id)
     {
+//        $org = Organization::find($id);
+//        return view('edit', compact('org'));
         $org = Organization::find($id);
-        return view('edit', compact('org'));
+        $resp = Organization::find($id)->responsible()->get();
+        $dir = Organization::find($id)->director()->get();
+        $teach = Organization::find($id)->teachers()->get();
+        $museum = Organization::find($id)->museums()->get();
+        $cab = Organization::find($id)->cabinets()->get();
+        $other = Organization::find($id)->others()->get();
+        $sub = Organization::find($id)->subjectStudy()->get();
+        $book = Organization::find($id)->book()->get();
+        $meth = Organization::find($id)->methodolog()->get();
+        $open = Organization::find($id)->openClassroom()->get();
+        $soc = Organization::find($id)->society()->get();
+        $col = Organization::find($id)->collective()->get();
+        $event = Organization::find($id)->event()->get();
+        $add = Organization::find($id)->additionalInfo()->get();
+
+        return view('edit', compact('org', 'resp', 'dir', 'teach',
+            'cab', 'museum', 'other', 'sub', 'book', 'meth', 'open', 'soc',
+            'col', 'event', 'add'));
     }
 
     public function update(Request $request, $id)

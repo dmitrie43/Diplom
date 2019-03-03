@@ -7,7 +7,14 @@
         {{ Form::open([
             'route' => 'store'
         ]) }}
-
+        <style>
+            .teach td, th {
+                padding: 10px 0 15px 10px;
+            }
+            textarea {
+                resize: none;
+            }
+        </style>
         <div class="box">
             <div class="box-header with-border">
                 <h2 class="box-title">Добавляем организацию</h2>
@@ -58,11 +65,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Статус образовательной организации</label>
-                        <input name="statusOrganization" value="{{old('statusOrganization')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <textarea name="statusOrganization" type="text" class="form-control" id="exampleInputEmail1" placeholder="">{{ old('statusOrganization') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Номер документа, подтверждающий наличие статуса</label>
-                        <input name="numberDocumentation" value="{{old('numberDocumentation')}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <textarea name="numberDocumentation" type="text" class="form-control" id="exampleInputEmail1" placeholder="">{{ old('numberDocumentation') }}</textarea>
                     </div>
                     <h3>Сведения о наличии:</h3>
                     <div class="form-group">
@@ -78,18 +85,19 @@
                                 <tr class="teach">
                                     <td class="myIdElement">1</td>
                                     <td>
-                                        <input type="text" placeholder="" name="Teacher[]" size="20">
+                                        <input type="text" placeholder="" name="Teacher[]" size="10">
                                     </td>
                                     <td>
-                                        <input type="text" placeholder="" name="Teacher[]" size="20">
+                                        <input type="text" placeholder="" name="Teacher[]" size="10">
                                     </td>
                                     <td>
-                                        <input type="text" placeholder="" name="Teacher[]" size="20">
+                                        <input type="text" placeholder="" name="Teacher[]" size="10">
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <button type="button" class="addNewStr">Добавить ещё</button>
+                            <button type="button" class="deleteNewStr">Очистить</button>
                         {{--{{ Form::open() }}--}}
                             {{--<p>--}}
                                 {{--<input class="countTeachers" type="number" name="rows" max="10" min="1" style="width: 100px">--}}
@@ -118,18 +126,19 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Museum[]" size="40">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Museum[]" size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Museum[]" size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Museum[]" size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Museum[]" size="20">
+                                    <input type="text" placeholder="" name="Museum[]" size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Кабинет по изучению родного (мордовского) языка</label>
@@ -143,15 +152,16 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Cabinets[]" size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Cabinets[]" size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Cabinets[]" size="20">
+                                    <input type="text" placeholder="" name="Cabinets[]" size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Иное</label>
@@ -164,12 +174,13 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <textarea type="text" placeholder="" name="Others[]" style="width: 400px; height: 30px"></textarea>
+                                    <textarea  class="form-control" rows="5" cols="50" type="text" placeholder="" name="Others[]"></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <h3>Указать, есть ли в образовательной деятельности следующее:</h3>
                     <div class="form-group">
@@ -185,15 +196,16 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Subject[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Subject[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Subject[]"  size="20">
+                                    <input type="text" placeholder="" name="Subject[]"  size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Учебники по изучению родного (мордовского) языка: автор, название, издательство, год выпуска</label>
@@ -209,21 +221,22 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Book[]"  size="20">
+                                    <input type="text" placeholder="" name="Book[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Book[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Book[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Book[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Book[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="number" placeholder="" name="Book[]"  size="20">
+                                    <input type="number" placeholder="" name="Book[]"  size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Методическое обеспечение по изучению родного (мордовского) языка: автор, название, издательство, год выпуска</label>
@@ -239,21 +252,22 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Methodolog[]"  size="20">
+                                    <input type="text" placeholder="" name="Methodolog[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Methodolog[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Methodolog[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Methodolog[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Methodolog[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="number" placeholder="" name="Methodolog[]"  size="20">
+                                    <input type="number" placeholder="" name="Methodolog[]"  size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Факультатив по изучению родного (мордовского) языка: название, класс</label>
@@ -268,18 +282,19 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="openClassroom[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="openClassroom[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="openClassroom[]"  size="20">
+                                    <input type="text" placeholder="" name="openClassroom[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="openClassroom[]"  size="20">
+                                    <input type="text" placeholder="" name="openClassroom[]"  size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Кружки по изучению родного (мордовского) языка: название, класс</label>
@@ -295,21 +310,22 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Society[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                    <input type="text" placeholder="" name="Society[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                    <input type="text" placeholder="" name="Society[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Society[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Society[]"  size="10"></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Коллективы (танцевальные, песенные, иные) связанные с изучением
@@ -326,21 +342,22 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Collective[]"  size="20">
+                                    <input type="text" placeholder="" name="Collective[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Collective[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Collective[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Collective[]"  size="20">
+                                    <input type="text" placeholder="" name="Collective[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Collective[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Collective[]"  size="10"></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <h3>Какие мероприятия по изучению и сохранению мордовской культуры и традиций проводятся в образовательной организации:</h3>
                     <div class="form-group">
@@ -360,25 +377,26 @@
                             <tr class="teach">
                                 <td class="myIdElement">1</td>
                                 <td>
-                                    <input type="text" placeholder="" name="Event[]"  size="20">
+                                    <input type="text" placeholder="" name="Event[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Event[]"  size="20">
+                                    <input type="text" placeholder="" name="Event[]"  size="10">
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Event[]"  size="20">
+                                    <textarea  class="form-control" rows="3" cols="40" type="text" placeholder="" name="Event[]"  size="10"></textarea>
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="" name="Event[]"  size="20">
+                                    <input type="text" placeholder="" name="Event[]"  size="10">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="addNewStr">Добавить ещё</button>
+                        <button type="button" class="deleteNewStr">Очистить</button>
                     </div>
                     <h3>Дополнительная информация:</h3>
                     <div class="form-group">
-                        <textarea name="additionalInfo" type="text" class="form-control" id="exampleInputEmail1" placeholder=""></textarea>
+                        <textarea  class="form-control" rows="5" cols="50" name="additionalInfo" type="text" id="exampleInputEmail1" placeholder=""></textarea>
                     </div>
                     <!-- Date -->
                 </div>
