@@ -16,14 +16,17 @@ class AdditionalInfo extends Model
     public static function add($fields)
     {
         if (!empty($fields)) {
-            $result[] = $fields;
+            $data[] = $fields;
             $keys = ['description'];
-            for ($i = 0; $i < count($result); $i++)
-            {
-                $res[] = array_combine($keys, $result);
-            }
+            $res[] = array_combine($keys, $data);
             return $res;
         } else return array();
+//        if(!empty($fields)) {
+//            $data = new static;
+//            $data->fill($fields);
+//            $data->save();
+//            return $data;
+//        } else return array();
     }
 
     public function edit($fields)

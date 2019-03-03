@@ -34,7 +34,7 @@ class LocationController extends Controller
         $col = Organization::find($organization->id)->collective()->select('head', 'name', 'ageChildren', 'description')->get();
         $event = Organization::find($organization->id)->event()->select('level', 'form', 'name', 'date')->get();
         $add = Organization::find($organization->id)->additionalInfo()->select('description')->get();
-        $simple = [$org, $resp, $dir];
+        $simple = [$org, $resp, $dir, $add];
         $arr = [];
 
         foreach ($simple as $item) {
@@ -45,6 +45,7 @@ class LocationController extends Controller
         $org2 = $arr[0];
         $resp2 = $arr[1];
         $dir2 = $arr[2];
+        $add2 = $arr[3];
 
         $res = [
             'organization' => $org2,
@@ -61,7 +62,7 @@ class LocationController extends Controller
             'societies' => $soc,
             'collectives' => $col,
             'events' => $event,
-            'additionalInfo' => $add
+            'additionalInfo' => $add2
         ];
 //        $res = [
 //            'организация' => $org2,
