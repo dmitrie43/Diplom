@@ -23,6 +23,11 @@ Route::group(['middleware' => 'cors'], function () {
     Route::get('/api/json', 'Api\LocationController@name')->name('jsonRus');
 });
 
+Route::group(['middleware' => 'cors'], function (){
+    Route::get('/primary', 'MapController@index');
+    Route::get('/teachers', 'MapController@getTeachers');
+});
+
 Route::group(['prefix' => 'home', 'middleware' => 'admin'], function (){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/list', 'ListController@index')->name('list');
