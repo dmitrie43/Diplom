@@ -34,56 +34,79 @@ class LocationController extends Controller
         $col = Organization::find($organization->id)->collective()->select('head', 'name', 'ageChildren', 'description')->get();
         $event = Organization::find($organization->id)->event()->select('level', 'form', 'name', 'date')->get();
         $add = Organization::find($organization->id)->additionalInfo()->select('description')->get();
-        $simple = [$org, $resp, $dir, $add, $other];
-        $arr = [];
-
-        foreach ($simple as $item) {
-            foreach ($item as $elem) {
-                $arr[] = $elem;
+        $data = [$org, $resp, $dir, $teach, $museum, $cab, $other, $sub,
+            $book, $meth, $open, $soc, $col, $event, $add];
+//        $simple = [$org, $resp, $dir, $other, $add];
+        $key = ['organization', 'responsible', 'director', 'teachers', 'museums', 'cabinets', 'others',
+            'subjects', 'books', 'methodologs', 'openClassrooms', 'societies', 'collectives', 'events', 'additionalInfo'];
+        $iteration = 0;
+        foreach ($data as $elem) {
+            if ($elem->count() != null) {
+                $items[] = json_decode($elem, true);
+                $keys[] = $key[$iteration];
             }
+            $iteration++;
         }
-        $org2 = $arr[0];
-        $resp2 = $arr[1];
-        $dir2 = $arr[2];
-        $add2 = $arr[3];
-        $other2 = $arr[4];
-
-        $res = [
-            'organization' => $org2,
-            'responsible' => $resp2,
-            'director' => $dir2,
-            'teachers' => $teach,
-            'museums' => $museum,
-            'cabinets' => $cab,
-            'others' => $other2,
-            'subjects' => $sub,
-            'books' => $book,
-            'methodologs' => $meth,
-            'openClassrooms' => $open,
-            'societies' => $soc,
-            'collectives' => $col,
-            'events' => $event,
-            'additionalInfo' => $add2
-        ];
-//        $res = [
-//            'организация' => $org2,
-//            'ответственный' => $resp2,
-//            'директор' => $dir2,
-//            'учителя' => $teach,
-//            'музеи' => $museum,
-//            'кабинеты' => $cab,
-//            'прочее' => $other,
-//            'предметы' => $sub,
-//            'книги' => $book,
-//            'методички' => $meth,
-//            'факультативы' => $open,
-//            'кружки' => $soc,
-//            'коллективы' => $col,
-//            'мероприятия' => $event,
-//            'дополнительная информация' => $add
-//        ];
+        $res = array_combine($keys, $items);
 
         return json_encode($res, JSON_UNESCAPED_UNICODE);
+
+//        $data = [$org, $resp, $dir, $teach, $museum, $cab, $other, $sub,
+//            $book, $meth, $open, $soc, $col, $event, $add];
+//        $key = ['organization', 'responsible', 'director', 'teachers', 'museums', 'cabinets', 'others',
+//            'subjects', 'books', 'methodologs', 'openClassrooms', 'societies', 'collectives', 'events', 'additionalInfo'];
+//        $iteration = 0;
+//        foreach ($data as $elem) {
+//            if ($elem->count() != null) {
+//                foreach ($elem as $item) {
+//                    $iterations[] = $iteration;
+//                    $items = json_decode($item, true);
+//                    $keys = $key[$iteration];
+//                    $iterationRes = array_count_values($iterations);
+//                    foreach ($iterationRes as $value) {
+//                        if ($value > 1) {
+//                            $itemsRes1[] = $items;
+//                        } else {
+//                            $itemsRes2[] = $items;
+//                        }
+//                    }
+//                }
+//            }
+//            $iteration++;
+//        }
+//        dd($itemsRes1);
+//        $res = array_combine($keys, $items);
+//        return json_encode($res, JSON_UNESCAPED_UNICODE);
+
+//        $simple = [$org, $resp, $dir];
+//        foreach ($simple as $item) {
+//            foreach ($item as $elem) {
+//                $arr[] = $elem;
+//            }
+//        }
+//
+//        $org2 = $arr[0];
+//        $resp2 = $arr[1];
+//        $dir2 = $arr[2];
+//
+//        $res = [
+//            'organization' => $org2,
+//            'responsible' => $resp2,
+//            'director' => $dir2,
+//            'teachers' => $teach,
+//            'museums' => $museum,
+//            'cabinets' => $cab,
+//            'others' => $other,
+//            'subjects' => $sub,
+//            'books' => $book,
+//            'methodologs' => $meth,
+//            'openClassrooms' => $open,
+//            'societies' => $soc,
+//            'collectives' => $col,
+//            'events' => $event,
+//            'additionalInfo' => $add
+//        ];
+
 //        $array2 = [
 //            ['organization' => $org],
 //            ['responsible' => $resp],
