@@ -16,7 +16,7 @@
 
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a class="block-ornament" href="#">
+        <a class="block-ornament" href="{{ route('map') }}">
           <img src="./uploads/ornament.png" alt="Орнамент" class="ornament" />
         </a>
         <button
