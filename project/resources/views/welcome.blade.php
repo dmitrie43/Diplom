@@ -13,11 +13,39 @@
   </head>
   <body>
     <div class="container-main">
-      <h1 class="title-map">Географический справочник учебных заведений</h1>
-      <div class="block-map" id="map"></div>
+      <div class="title-block">
+        <h1 class="title-map">Географический справочник учебных заведений</h1>
+      </div>
+      <div class="container-map">
+        <div class="wrapper">
+          <div id="map"></div>
+        </div>
+      </div>
+
+      <div class="block-area"></div>
+
+      <div class="footer-map">
+        <div class="block-text">
+          <h3>Контакты</h3>
+          <div class="names">
+            <div class="block-name">Имя</div>
+            <div class="block-name">Имя</div>
+            <div class="block-name">Имя</div>
+          </div>
+        </div>
+      </div>
     </div>
+    <section class="overlay" aria-hidden="true">
+      <div class="popup">
+        <span class="close">X</span>
+        <h2 class="area-name"></h2>
+
+        <div class="content"></div>
+      </div>
+    </section>
 
     <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-    <script src="{{ asset('js/bundle.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.js"></script>
+    <script src="js/bundle.js"></script>
   </body>
 </html>

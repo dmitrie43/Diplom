@@ -9,35 +9,38 @@
 
     <link rel="stylesheet" href="css/style.bundle.css" />
 
-    <title>Сайт</title>
+    <title>Карта изучения культуры и быта мордовского народа</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+      <a class="block-ornament" href="#">
+        <img src="./uploads/ornament.png" alt="Орнамент" class="ornament" />
+      </a>
+      <button
+        class="navbar-toggler js-btn-collapse"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar1"
+        aria-controls="navbar1"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto justify-content-center js-nav"></ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="dynamic-place"></div>
+    </div>
+
+    <div class="background-wrapper-img"></div>
     <div class="background-img"></div>
 
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a class="block-ornament" href="{{ route('map') }}">
-          <img src="./uploads/ornament.png" alt="Орнамент" class="ornament" />
-        </a>
-        <button
-          class="navbar-toggler js-btn-collapse"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbar1"
-          aria-controls="navbar1"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbar1">
-          <ul class="navbar-nav mr-auto justify-content-center js-nav"></ul>
-        </div>
-      </nav>
-      <div class="container">
-        <div class="dynamic-place"></div>
-      </div>
+    <div class="block-btn-glass">
+      <a href="#" class="btn-glass js-btn-glass"> Вернуться<br />на карту</a>
     </div>
 
     <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
@@ -53,11 +56,11 @@
     </div>
     <div class="block-books row">
         <div class="my-col col-md-6 col-lg-4">
-          <div class="block-book shadow">
-            <div><span class="bold">Название: </span><span class="name"></span></div>
-            <div><span class="bold">Автор: </span><span class="author"></span></div>
-            <div><span class="bold">Издательство: </span><span class="publish"></span></div>
-            <div><span class="bold">Год: </span><span class="year"></span></div>
+          <div class="block-book shadow height-full">
+            <div class="block-name"><span class="bold">Название: </span><span class="name"></span></div>
+            <div class="block-author"><span class="bold">Автор: </span><span class="author"></span></div>
+            <div class="block-publish"><span class="bold">Издательство: </span><span class="publish"></span></div>
+            <div class="block-year"><span class="bold">Год: </span><span class="year"></span></div>
           </div>
       </div>
     </div>
@@ -71,9 +74,9 @@
       </div>
     <div class="block-cabinets row">
       <div class="my-col col-md-6 col-lg-4">
-        <div class="block-cabinet shadow-f">
-          <div><span class="bold">Описание: </span><span class="description"></span></div>
-          <div><span class="bold">Руководитель: </span><span class="head"></span></div>
+        <div class="block-cabinet shadow height-full">
+          <div class="block-description"><span class="bold">Описание: </span><span class="description"></span></div>
+          <div class="block-head"><span class="bold">Руководитель: </span><span class="head"></span></div>
         </div>
       </div>
     </div>
@@ -87,7 +90,7 @@
       </div>
     <div class="row block-additionalInfos">
       <div class="my-col col-12">
-        <div class="block-additionalInfo">
+        <div class="block-additionalInfo height-full">
           <div class="description">
           </div>
         </div>
@@ -103,11 +106,11 @@
       </div>
     <div class="block-collectives row">
         <div class="my-col col-md-6 col-lg-4">
-          <div class="block-collective shadow">
-            <div><span class="bold">Название: </span><span class="name"></span></div>
-            <div><span class="bold">Руководитель: </span><span class="head"></span></div>
-            <div><span class="bold">Уровень: </span><span class="ageChildren"></span></div>
-            <div><span class="bold">Описание: </span><span class="description"></span></div>
+          <div class="block-collective shadow height-full">
+            <div class="block-name"><span class="bold">Название: </span><span class="name"></span></div>
+            <div class="block-head"><span class="bold">Руководитель: </span><span class="head"></span></div>
+            <div class="block-ageChildren"><span class="bold">Уровень: </span><span class="ageChildren"></span></div>
+            <div class="block-description"><span class="bold">Описание: </span><span class="description"></span></div>
         </div>
       </div>
     </div>
@@ -120,12 +123,12 @@
           <h2 class=" my-border-ref">Мероприятия</h2>
       </div>
     <div class="block-events row">
-        <div class="my-col col-md-6 col-lg-4">
-          <div class="block-event shadow">
-            <div><span class="bold">Название: </span><span class="name"></span></div>
-            <div><span class="bold">Уровень: </span><span class="level"></span></div>
-            <div><span class="bold">Тип: </span><span class="form"></span></div>
-            <div><span class="bold">Дата: </span><span class="date"></span></div>
+        <div class="col my-col col-md-6 col-lg-4">
+          <div class="block-event shadow height-full">
+            <div class="block-name"><span class="bold">Название: </span><span class="name"></span></div>
+            <div class="block-level"><span class="bold">Уровень: </span><span class="level"></span></div>
+            <div class="block-form"><span class="bold">Тип: </span><span class="form"></span></div>
+            <div class="block-date"><span class="bold">Дата: </span><span class="date"></span></div>
         </div>
       </div>
     </div>
@@ -135,11 +138,11 @@
 <script id="main" type="text/x-handlebars-template">
   <main class="main">
     <header class="header">
-      <h1 class="header-org"></h1>
+      <h1 class="block-nameOrganization"><span class="nameOrganization"></span></h1>
       <br>
-      <p class="header-status shadow"></p>
+      <p class="block-statusOrganization shadow"><span class="statusOrganization"></span></p>
       <br>
-      <p class="header-doc shadow"></p>
+      <p class="block-numberDocumentation shadow"><span class="numberDocumentation"></span></p>
     </header>
 
     <hr>
@@ -152,15 +155,15 @@
       </div>
       <div class="block-responsible">
         <span class="bold">Ответственный:</span>
-
         <span class="surname"></span>
         <span class="name"></span>
-        <span class="patronymic"></span>,
-        <span class="bold">телефон:</span>
-        <span class="telephone"></span>
+        <span class="patronymic"></span>
+        <span class="block-telephone">,
+          <span class="bold">телефон:</span>
+          <span class="telephone"></span>
+        </span>
 
       </div>
-    </div>
   </main>
 </script>
 
@@ -172,10 +175,10 @@
 
     <div class="block-museums row">
       <div class="my-col col-12">
-        <div class="block-museum shadow">
-          <div><span class="bold">Описание: </span><span class="description"></span></div>
-          <div><span class="bold">Экспозиция: </span><span class="exposition"></span></div>
-          <div><span class="bold">Руководитель: </span><span class="head"></span></div>
+        <div class="block-museum shadow height-full">
+          <div class="block-description"><span class="bold">Описание: </span><span class="description"></span></div>
+          <div class="block-exposition"><span class="bold">Экспозиция: </span><span class="exposition"></span></div>
+          <div class="block-head"><span class="bold">Руководитель: </span><span class="head"></span></div>
         </div>
 
       </div>
@@ -190,7 +193,7 @@
       </div>
     <div class="row block-others">
       <div class="my-col col-12">
-        <div class="block-other">
+        <div class="block-other height-full">
           <div class="description">
           </div>
         </div>
@@ -228,9 +231,9 @@
       </div>
     <div class="block-subjects row">
         <div class="my-col col-md-6 col-lg-4">
-          <div class="block-subject shadow">
-            <div><span class="bold">Название: </span><span class="title"></span></div>
-            <div><span class="bold">Уровень: </span><span class="level"></span></div>
+          <div class="block-subject shadow height-full">
+            <div class="block-title"><span class="bold">Название: </span><span class="title"></span></div>
+            <div class="block-level"><span class="bold">Уровень: </span><span class="level"></span></div>
           </div>
       </div>
     </div>
@@ -244,11 +247,11 @@
       </div>
     <div class="block-societies row">
         <div class="my-col col-md-6 col-lg-4">
-            <div class="block-society shadow">
-            <div><span class="bold">Название: </span><span class="name"></span></div>
-            <div><span class="bold">Класс: </span><span class="class"></span></div>
-            <div><span class="bold">Руководитель: </span><span class="head"></span></div>
-            <div><span class="bold">Описание: </span><span class="description"></span></div>
+            <div class="block-society shadow height-full">
+            <div class="block-name"><span class="bold">Название: </span><span class="name"></span></div>
+            <div class="block-class"><span class="bold">Класс: </span><span class="class"></span></div>
+            <div class="block-head"><span class="bold">Руководитель: </span><span class="head"></span></div>
+            <div class="block-description"><span class="bold">Описание: </span><span class="description"></span></div>
         </div>
       </div>
     </div>
@@ -262,10 +265,10 @@
       </div>
       <div class="block-openClassrooms row">
           <div class="my-col col-md-6 col-lg-4">
-            <div class="block-openClassroom shadow">
-              <div><span class="bold">Руководитель: </span><span class="head"></span></div>
-              <div><span class="bold">Класс: </span><span class="class"></span></div>
-              <div><span class="bold">Описание: </span><span class="description"></span></div>
+            <div class="block-openClassroom shadow height-full">
+              <div class="block-head"><span class="bold">Руководитель: </span><span class="head"></span></div>
+              <div class="block-class"><span class="bold">Класс: </span><span class="class"></span></div>
+              <div class="block-description"><span class="bold">Описание: </span><span class="description"></span></div>
           </div>
         </div>
       </div>
@@ -279,11 +282,11 @@
       </div>
       <div class="block-methodologs row">
           <div class="my-col col-md-6 col-lg-4">
-            <div class="block-methodolog shadow">
-              <div><span class="bold">Название: </span><span class="name"></span></div>
-              <div><span class="bold">Автор: </span><span class="author"></span></div>
-              <div><span class="bold">Издательство: </span><span class="publish"></span></div>
-              <div><span class="bold">Год: </span><span class="year"></span></div>
+            <div class="block-methodolog shadow height-full">
+              <div class="block-name"><span class="bold">Название: </span><span class="name"></span></div>
+              <div class="block-author"><span class="bold">Автор: </span><span class="author"></span></div>
+              <div class="block-publish"><span class="bold">Издательство: </span><span class="publish"></span></div>
+              <div class="block-year"><span class="bold">Год: </span><span class="year"></span></div>
           </div>
         </div>
       </div>
