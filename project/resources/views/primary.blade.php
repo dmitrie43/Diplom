@@ -32,6 +32,7 @@
         <ul class="navbar-nav mr-auto justify-content-center js-nav"></ul>
       </div>
     </nav>
+
     <div class="container">
       <div class="dynamic-place"></div>
     </div>
@@ -162,7 +163,7 @@
           <span class="bold">телефон:</span>
           <span class="telephone"></span>
         </span>
-
+		</div>
       </div>
   </main>
 </script>
