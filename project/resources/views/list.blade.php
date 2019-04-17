@@ -6,7 +6,7 @@
     <div class="form-group">
         <a href="{{ route('create') }}" class="btn btn-success">Добавить</a>
     </div>
-    <table id="example1" class="table table-bordered table-striped" style="width: 1000px;">
+    <table id="example1" class="table table-bordered table-striped" style="max-width: 70%">
         <thead>
         <tr>
             <th>ID</th>

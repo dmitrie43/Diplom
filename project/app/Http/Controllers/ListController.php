@@ -99,6 +99,7 @@ class ListController extends Controller
 //        $org = Organization::find($id);
 //        return view('edit', compact('org'));
         $org = Organization::find($id);
+        $orgs = Organization::where('id', $id)->get();
         $resp = Organization::find($id)->responsible()->get();
         $dir = Organization::find($id)->director()->get();
         $teach = Organization::find($id)->teachers()->get();
@@ -113,11 +114,15 @@ class ListController extends Controller
         $col = Organization::find($id)->collective()->get();
         $event = Organization::find($id)->event()->get();
         $add = Organization::find($id)->additionalInfo()->get();
+        foreach ($orgs as $elem) {
+            $area_id = $elem->area_id;
+        }
+        $area = Area::where('id', $area_id)->get();
         $areas = Area::all();
 
         return view('edit', compact('org', 'resp', 'dir', 'teach',
             'cab', 'museum', 'other', 'sub', 'book', 'meth', 'open', 'soc',
-            'col', 'event', 'add', 'areas'));
+            'col', 'event', 'add', 'areas', 'area'));
     }
 
     public function update(Request $request, $id)

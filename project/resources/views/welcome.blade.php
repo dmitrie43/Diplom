@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="css/style.bundle.css" />
 
-    <title>Сайт</title>
+    <title>Карта изучения культуры и быта мордовского народа</title>
   </head>
   <body>
     <div class="container-main">

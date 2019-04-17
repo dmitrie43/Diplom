@@ -66,10 +66,15 @@
                     @endforeach
                     <div class="form-group">
                         <label for="exampleInputEmail1">Выберите район: </label>
+                        @foreach($area as $item)
                         <select name="area_id">
-                            @foreach ($areas as $area)
-                                <option value="{{ $loop->iteration }}">{{ $area->name }}</option>
+                            @foreach ($areas as $elem)
+                                @if($item->name == $elem->name)
+                                    <option selected value="{{ $loop->iteration }}">{{ $elem->name }}</option>
+                                @endif
+                                <option value="{{ $loop->iteration }}">{{ $elem->name }}</option>
                             @endforeach
+                        @endforeach
                         </select>
                     </div>
                     <div class="form-group">

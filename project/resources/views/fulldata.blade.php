@@ -4,6 +4,12 @@
 
 @section('content')
     <style>
+        @media screen and (max-width: 600px) {
+            .table-wrap {
+                overflow-x: auto;
+                overflow-y: scroll;
+            }
+        }
         table {
             font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
             font-size: 14px;
@@ -14,6 +20,7 @@
             background: #AFCDE7;
             color: white;
             padding: 10px 20px;
+
         }
         th, td {
             border-style: solid;
@@ -28,7 +35,7 @@
         }
     </style>
     <section class="content">
-        <table id="example1" class="table_blur">
+        <table id="example1" class="table_blur table-wrap">
             <th colspan="6"></th>
             @foreach($org as $elem)
                 <tr>

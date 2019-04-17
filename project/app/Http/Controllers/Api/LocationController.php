@@ -19,7 +19,7 @@ class LocationController extends Controller
 
     public function show(Organization $organization)
     {
-        $org = Organization::where('id', $organization->id)->select('nameOrganization', 'area_id', 'statusOrganization', 'numberDocumentation', 'reduction')->get();
+        $org = Organization::where('id', $organization->id)->select('nameOrganization', 'area', 'statusOrganization', 'numberDocumentation', 'reduction')->get();
         $resp = Organization::find($organization->id)->responsible()->select('surname', 'name', 'patronymic', 'telephone')->get();
         $dir = Organization::find($organization->id)->director()->select('surname', 'name', 'patronymic')->get();
         $teach = Organization::find($organization->id)->teachers()->select('surname', 'name', 'patronymic')->get();
